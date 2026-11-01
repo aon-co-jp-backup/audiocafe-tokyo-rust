@@ -93,6 +93,43 @@ const TOP_VIDEO_HTML: &str = r#"<p style="max-width:960px;margin:1rem auto .8rem
 <p lang="en" style="margin:0 0 .8rem;font-size:1.15rem;opacity:.9;">RPoem is a Rust platform centered on GraphQL Federation, with compatible Poem and Tauri functionality built from scratch in Rust. Its admin UI uses neither TypeScript nor Node.js; it is built in Rust and compiled to WebAssembly.</p>
 <p style="margin:0;font-size:.95rem;">リソース元 / Sources: <a href="https://github.com/aon-co-jp/RPoem" target="_blank" rel="noopener noreferrer">RPoem リポジトリ / repository</a> ・ <a href="https://github.com/aon-co-jp/RPoem/blob/main/README.md" target="_blank" rel="noopener noreferrer">README.md</a> ・ <a href="https://github.com/aon-co-jp/RPoem/blob/main/PORTING.md" target="_blank" rel="noopener noreferrer">PORTING.md</a> ・ <a href="https://github.com/aon-co-jp/RPoem/blob/main/CLAUDE.md" target="_blank" rel="noopener noreferrer">CLAUDE.md</a> ・ <a href="https://github.com/aon-co-jp/RPoem/blob/main/docs/poem-parity.md" target="_blank" rel="noopener noreferrer">docs/poem-parity.md</a> ・ <a href="https://github.com/aon-co-jp/RPoem/blob/main/docs/tauri-parity.md" target="_blank" rel="noopener noreferrer">docs/tauri-parity.md</a></p>
 </div>
+<div class="top-intro" style="margin:1rem auto;padding:.8rem 1rem;max-width:42rem;text-align:left;line-height:1.8;font-size:1.1rem;">
+    <p style="margin:0 0 .8rem;">CLAUDEと言うAIをマスターして使いこなしておりますので、<br>様々なプログラム言語とフレームワーク対応可能で、<br>様々なWEBサイトやスマホアプリ開発が可能で御座います。</p>
+    <p style="margin:0;"><a href="mailto:norukia.jp@gmail.com">norukia.jp@gmail.com</a><br>
+    石　塚　正　浩<br>
+    郵便番号　197-0828<br>
+    東京都あきる野市秋留5-3-11<br>
+    <a href="tel:09075555011">090-7555-5011</a></p>
+</div>
+<div class="ai-driven-research" style="margin:1rem auto;padding:.8rem 1rem;max-width:42rem;border:1px solid rgba(128,128,128,.5);border-radius:8px;text-align:left;">
+    <strong>🔬 研究中：Claudeによる、WEBスキルが無くても日本語（母国語）でWEBサイトやスマホアプリを開発する為のAI駆動開発（研究の一部）</strong><br />
+    📝 <a href="https://ameblo.jp/www-aon/entry-12973252437.html" target="_blank" rel="noopener noreferrer">プログラム言語やフレームワークなどの全てをRust（Poemやhyper）版に移植するメリット？</a><br />
+    <a href="https://ameblo.jp/www-aon/entry-12973252437.html" target="_blank" rel="noopener noreferrer">https://ameblo.jp/www-aon/entry-12973252437.html</a>
+  </div>
+<p style="font-size:1.2rem;margin:1rem 0;">政府は、LINEアプリ化して、99％リストラして少子高齢化と年金と後期高齢者無償化予算確保。<br>
+    <a href="https://ameblo.jp/www-aon/entry-12981307682.html" target="_blank" rel="noopener noreferrer">https://ameblo.jp/www-aon/entry-12981307682.html</a></p>
+<div class="online-learning" style="margin:1rem auto;padding:.8rem 1rem;max-width:42rem;border:1px solid rgba(128,128,128,.5);border-radius:8px;text-align:left;">
+    <strong>🎓 オンライン学習サイト / Online learning</strong><br />
+    AI駆動開発も学べます。WEBスキルなしで日本語でWEBサイトやスマホアプリが開発出来る様になります。<br />
+    <a href="https://progate.com/courses/feature/ai-driven-development/exercises/atmoSFuL468uLDi-Pd-lI" target="_blank" rel="noopener noreferrer">▶️ Progate「AI駆動開発」</a><br />
+    HTML,CSSを学ぼう<br />
+    <a href="https://progate.com/courses/feature/webpage/exercises/hJQNO8xPIcha_idvTX2dn" target="_blank" rel="noopener noreferrer">▶️ Progate「HTML・CSS」</a><br />
+    Pythonなら、無料ならPaizaの<br />
+    <a href="https://paiza.jp/works/search_courses/2208" target="_blank" rel="noopener noreferrer">▶️ paizaラーニング「Python3」入門講座一覧</a><br />
+    Python プロゲート<br />
+    <a href="https://progate.com/courses/python" target="_blank" rel="noopener noreferrer">▶️ Progate「Python入門」</a><br />
+    その他無料でPythonが学べます。<br />
+    <a href="https://www.python.jp/train/index.html" target="_blank" rel="noopener noreferrer">▶️ python.jp「Python入門講座」</a>
+  </div>
+<p style="font-size:1.2rem;margin:1rem 0;text-align:center;">
+<a href="https://www.youtube.com/watch?v=mrCAz7mU9Zo" target="_blank" rel="noopener noreferrer">▶️ 【1日密着】Claude Codeに取り憑かれたエンジニア｜その衝撃の開発手法に迫る</a><br>
+<a href="https://www.facebook.com/reel/1753405299237847?locale=ja_JP" target="_blank" rel="noopener noreferrer">Facebook Backup</a><br>
+<a href="https://www.youtube.com/results?search_query=AI%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA%20CLAUDE%20CODE%20DESKTOP" target="_blank" rel="noopener noreferrer">▶️ AI駆動開発 CLAUDE CODE DESKTOP</a><br>
+<a href="/aruaru">audiocafe.tokyo/aruaru(IT・建築系求人 日本語版)</a><br>
+<a href="https://audiocafe.tokyo/aruaru/index-en.php">🌐 audiocafe.tokyo/aruaru (English, translated by Claude Code)</a><br>
+<a href="/aruaru-lady">audiocafe.tokyo/aruaru-lady(女性向け求人 日本語版)</a><br>
+<a href="https://audiocafe.tokyo/aruaru-lady/index-en.php">🌐 audiocafe.tokyo/aruaru-lady (English, translated by Claude Code)</a></p>
+
 <section class="top-news" style="max-width:640px;margin:1rem auto;text-align:center;">
 <div style="max-width:360px;margin:0 auto 1.4rem;">
 <p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://www.youtube.com/shorts/FiW4F_XqHdc" target="_blank" rel="noopener noreferrer">ポーランド美女が一番嬉しかった瞬間？</a></p>
@@ -588,12 +625,6 @@ const TOP_VIDEO_HTML: &str = r#"<p style="max-width:960px;margin:1rem auto .8rem
 <p style="text-align:center;font-size:1.2rem;margin:1rem 0;"><br>民間ガン治療法<br><br>ボランティア情報<br><br><a href="https://ameblo.jp/www-aon/entry-12981774738.html" target="_blank" rel="noopener noreferrer">https://ameblo.jp/www-aon/entry-12981774738.html</a></p>
 </section>
 <div class="top-intro" style="margin:1rem auto;padding:.8rem 1rem;max-width:42rem;text-align:left;line-height:1.8;font-size:1.1rem;">
-    <p style="margin:0 0 .8rem;">CLAUDEと言うAIをマスターして使いこなしておりますので、<br>様々なプログラム言語とフレームワーク対応可能で、<br>様々なWEBサイトやスマホアプリ開発が可能で御座います。</p>
-    <p style="margin:0;"><a href="mailto:norukia.jp@gmail.com">norukia.jp@gmail.com</a><br>
-    石　塚　正　浩<br>
-    郵便番号　197-0828<br>
-    東京都あきる野市秋留5-3-11<br>
-    <a href="tel:09075555011">090-7555-5011</a></p>
     <br>
     <p style="text-align:center;margin:1rem 0 .4rem"><img src="/images/falconlab-model-707.jpg" alt="FalconLab Model 707" style="max-width:100%;height:auto;max-height:560px"></p>
     <p style="font-size:1.2rem;margin:.4rem 0 1.4rem"><a href="https://www.google.com/search?ibp=oshop&amp;prds=pvt:hg,pvo:48,imageDocid:10771413835225635290,headlineOfferDocid:3061133778700411862,productDocid:3061133778700411862&amp;q=product&amp;sa=X&amp;ved=2ahUKEwjE6bOfhNiXAxVss1YBHWfiH1wQxa4PegoIAggACAAIGhAF&amp;biw=1144&amp;bih=722&amp;dpr=2" target="_blank" rel="noopener noreferrer">FalconLab Model 707</a><br>ペアで3,850,000円(税込)<br>・特徴: 3ウェイ・5スピーカー構成の無指向性（全指向性）バスレフ型<br>・音響効果: 部屋のどこにいても均一でリアルな立体音響空間（360度）を再現します。<br>公式ページ: <a href="https://www.falconlab.jp/model707.php" target="_blank" rel="noopener noreferrer">https://www.falconlab.jp/model707.php</a></p>
