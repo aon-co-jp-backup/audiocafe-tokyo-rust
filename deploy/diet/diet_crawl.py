@@ -15,7 +15,7 @@ SOURCES = [
 ]
 JST = timezone(timedelta(hours=9))
 SEARCH_URL = "http://127.0.0.1:4610/v1/search"
-LLM_URL = "http://127.0.0.1:4600/v1/chat-providers/complete-priority"
+LLM_URL = "http://127.0.0.1:4600/aruaru_llm.v1.Llm/ChatProvidersCompletePriority"
 QUERY = "時短 ダイエット レシピ"
 SKIP = ("instagram.com", "youtube.com", "tiktok.com", "twitter.com", "x.com", "facebook.com")
 
