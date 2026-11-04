@@ -14,7 +14,7 @@ SOURCES = [
     ("rakuten", "https://recipe.rakuten.co.jp/category/39-504/", r'href="(/recipe/\d+/)"'),
 ]
 JST = timezone(timedelta(hours=9))
-SEARCH_URL = "http://127.0.0.1:4610/v1/search"
+SEARCH_URL = "http://127.0.0.1:4610/aruaru_search.v1.Search/Search"
 LLM_URL = "http://127.0.0.1:4600/aruaru_llm.v1.Llm/ChatProvidersCompletePriority"
 QUERY = "時短 ダイエット レシピ"
 SKIP = ("instagram.com", "youtube.com", "tiktok.com", "twitter.com", "x.com", "facebook.com")
