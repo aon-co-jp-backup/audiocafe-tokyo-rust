@@ -27,7 +27,10 @@ mod seed_urls;
 
 use open_runo_router::hyper_compat::{self, Params};
 use hyper::{Method, StatusCode};
-use serde_json::Value;
+// JSONは速い値の型(`sonic_rs::Value`)で読む(RS-JSONの方針、2026-10-16)。
+// 旧`serde_json::Value`はキーをアルファベット順に持っていたため、表の列順などが変わらないよう
+// `sorted_entries`で同じ順序に揃えている。
+use sonic_rs::{JsonContainerTrait, JsonValueTrait, Value};
 use std::sync::Arc;
 use once_cell::sync::Lazy;
 use serde::Deserialize;
@@ -290,11 +293,34 @@ nav a {{ margin-right: 1rem; }}
 async fn fetch_cache(filename: &str) -> Result<Value, String> {
     let local_path = std::path::Path::new(CACHE_DIR).join(filename);
     if let Ok(text) = std::fs::read_to_string(&local_path) {
-        return rust_json::parse_strict(&text).map_err(|e| e.to_string());
+        return parse_cache_json(&text);
     }
     let url = format!("{CACHE_BASE}/{filename}");
     let text = reqwest::get(&url).await.map_err(|e| e.to_string())?.text().await.map_err(|e| e.to_string())?;
-    rust_json::parse_strict(&text).map_err(|e| e.to_string())
+    parse_cache_json(&text)
+}
+
+/// キャッシュJSONを、`RS-JSON`の安全な厳密モード+速い値の型で読む。
+/// 上限は16 MiB・深さ32・重複キー拒否(ローカルのキャッシュは信頼できるが、HTTP経由の
+/// フォールバックは外部の入力なので、どちらも同じ上限で読む)。
+fn parse_cache_json(text: &str) -> Result<Value, String> {
+    let limits = rust_json::Limits { max_bytes: 16 * 1024 * 1024, max_depth: 32, reject_duplicate_keys: true };
+    rust_json::parse_secure_sonic(text, &limits).map_err(|e| e.to_string())
+}
+
+/// オブジェクトの(キー, 値)を**キーのアルファベット順**で返す。旧`serde_json::Value`
+/// (`preserve_order`なし)がこの順序で保持していたため、表の列順・出力順が切替前後で
+/// 変わらないよう揃える(`sonic_rs::Value`はJSONの出現順で保持する)。
+fn sorted_entries(obj: &sonic_rs::Object) -> Vec<(&str, &Value)> {
+    let mut v: Vec<(&str, &Value)> = obj.iter().collect();
+    v.sort_by(|a, b| a.0.cmp(b.0));
+    v
+}
+
+/// 値を表示用の文字列にする(`serde_json::Value::to_string()`相当: 文字列は引用符つきJSON、
+/// 数値・真偽値・nullはそのまま、配列・オブジェクトはJSON)。
+fn value_to_json_string(v: &Value) -> String {
+    sonic_rs::to_string(v).unwrap_or_default()
 }
 
 fn html_escape(s: &str) -> String {
@@ -308,10 +334,10 @@ fn render_object_array(items: &[Value]) -> String {
     let Some(first) = items.first().and_then(|v| v.as_object()) else {
         return String::new();
     };
-    let columns: Vec<&String> = first.keys().collect();
+    let columns: Vec<&str> = sorted_entries(first).into_iter().map(|(k, _)| k).collect();
     let uniform = items.iter().all(|v| {
         v.as_object().map(|o| {
-            let keys: Vec<&String> = o.keys().collect();
+            let keys: Vec<&str> = sorted_entries(o).into_iter().map(|(k, _)| k).collect();
             keys == columns
         }).unwrap_or(false)
     });
@@ -325,13 +351,13 @@ fn render_object_array(items: &[Value]) -> String {
         for item in items {
             out.push_str("<tr>");
             for col in &columns {
-                let cell = item.get(col.as_str());
+                let cell = item.get(*col);
                 let rendered = match cell {
-                    Some(Value::String(s)) if s.starts_with("http://") || s.starts_with("https://") => {
-                        format!(r#"<a href="{0}" target="_blank" rel="noopener noreferrer">🔎 リンク</a>"#, html_escape(s))
+                    Some(v) if v.as_str().map(|s| s.starts_with("http://") || s.starts_with("https://")).unwrap_or(false) => {
+                        format!(r#"<a href="{0}" target="_blank" rel="noopener noreferrer">🔎 リンク</a>"#, html_escape(v.as_str().unwrap_or("")))
                     }
-                    Some(Value::String(s)) => html_escape(s),
-                    Some(v) => html_escape(&v.to_string()),
+                    Some(v) if v.as_str().is_some() => html_escape(v.as_str().unwrap_or("")),
+                    Some(v) => html_escape(&value_to_json_string(v)),
                     None => String::new(),
                 };
                 out.push_str(&format!("<td>{rendered}</td>"));
@@ -344,9 +370,9 @@ fn render_object_array(items: &[Value]) -> String {
         let mut out = String::from("<ul>");
         for item in items {
             if let Some(obj) = item.as_object() {
-                let pairs: Vec<String> = obj
-                    .iter()
-                    .map(|(k, v)| format!("{}: {}", html_escape(k), html_escape(&v.to_string())))
+                let pairs: Vec<String> = sorted_entries(obj)
+                    .into_iter()
+                    .map(|(k, v)| format!("{}: {}", html_escape(k), html_escape(&value_to_json_string(v))))
                     .collect();
                 out.push_str(&format!("<li>{}</li>", pairs.join(" / ")));
             }
@@ -362,46 +388,43 @@ fn render_object_array(items: &[Value]) -> String {
 fn render_value_generic(data: &Value, depth: u8) -> String {
     let mut out = String::new();
     let Some(obj) = data.as_object() else {
-        return html_escape(&data.to_string());
+        return html_escape(&value_to_json_string(data));
     };
 
     // 先に見出し的なスカラーフィールド(updated_at/disclaimer等)を出す。
     for key in ["updated_at", "crawled_at", "disclaimer"] {
-        if let Some(v) = obj.get(key).and_then(|v| v.as_str()) {
+        if let Some(v) = obj.get(&key).and_then(|v| v.as_str()) {
             out.push_str(&format!("<p class=\"disclaimer\">{}: {}</p>", html_escape(key), html_escape(v)));
         }
     }
 
-    for (key, value) in obj {
-        if matches!(key.as_str(), "updated_at" | "crawled_at" | "disclaimer") {
+    for (key, value) in sorted_entries(obj) {
+        if matches!(key, "updated_at" | "crawled_at" | "disclaimer") {
             continue;
         }
-        match value {
-            Value::String(s) if s.starts_with("http://") || s.starts_with("https://") => {
+        if let Some(s) = value.as_str() {
+            if s.starts_with("http://") || s.starts_with("https://") {
                 out.push_str(&format!(
                     r#"<p><strong>{}:</strong> <a href="{}" target="_blank" rel="noopener noreferrer">🔎 リンク</a></p>"#,
                     html_escape(key), html_escape(s)
                 ));
-            }
-            Value::String(s) => {
+            } else {
                 out.push_str(&format!("<p><strong>{}:</strong> {}</p>", html_escape(key), html_escape(s)));
             }
-            Value::Number(_) | Value::Bool(_) => {
-                out.push_str(&format!("<p><strong>{}:</strong> {}</p>", html_escape(key), html_escape(&value.to_string())));
-            }
-            Value::Array(items) if items.iter().all(|v| v.is_string()) => {
+        } else if value.is_number() || value.is_boolean() {
+            out.push_str(&format!("<p><strong>{}:</strong> {}</p>", html_escape(key), html_escape(&value_to_json_string(value))));
+        } else if let Some(arr) = value.as_array() {
+            let items = arr.as_slice();
+            if items.iter().all(|v| v.is_str()) {
                 let list: String = items.iter().map(|v| format!("<li>{}</li>", html_escape(v.as_str().unwrap_or("")))).collect();
                 out.push_str(&format!("<h{n}>{k}</h{n}><ul>{list}</ul>", n = (depth + 2).min(6), k = html_escape(key)));
-            }
-            Value::Array(items) if !items.is_empty() && items.iter().all(|v| v.is_object()) => {
+            } else if !items.is_empty() && items.iter().all(|v| v.is_object()) {
                 out.push_str(&format!("<h{n}>{k}</h{n}>", n = (depth + 2).min(6), k = html_escape(key)));
                 out.push_str(&render_object_array(items));
             }
-            Value::Object(_) => {
-                out.push_str(&format!("<h{n}>{k}</h{n}>", n = (depth + 2).min(6), k = html_escape(key)));
-                out.push_str(&render_value_generic(value, depth + 1));
-            }
-            _ => {}
+        } else if value.is_object() {
+            out.push_str(&format!("<h{n}>{k}</h{n}>", n = (depth + 2).min(6), k = html_escape(key)));
+            out.push_str(&render_value_generic(value, depth + 1));
         }
     }
     out
@@ -495,9 +518,8 @@ fn google_search_url(query: &str) -> String {
 /// まとめて扱うために追加)。
 fn get_disp(v: &Value, key: &str) -> String {
     match v.get(key) {
-        Some(Value::String(s)) => s.clone(),
-        Some(Value::Number(n)) => n.to_string(),
-        Some(Value::Bool(b)) => b.to_string(),
+        Some(x) if x.as_str().is_some() => x.as_str().unwrap_or("").to_string(),
+        Some(x) if x.is_number() || x.is_boolean() => value_to_json_string(x),
         _ => String::new(),
     }
 }
@@ -629,28 +651,28 @@ async fn render_aruaru_lady_body() -> String {
     let tv_group = fetch_cache("aruaru-lady/aruaru-tvchat-group-ranking-cache.json").await;
     let tv_normal = fetch_cache("aruaru-lady/aruaru-tvchat-normal-ranking-cache.json").await;
 
-    let empty = Value::Null;
+    let empty = Value::default(); // null
     let caba = caba.as_ref().unwrap_or(&empty);
     let jukujo = jukujo.as_ref().unwrap_or(&empty);
     let tv_group = tv_group.as_ref().unwrap_or(&empty);
     let tv_normal = tv_normal.as_ref().unwrap_or(&empty);
 
     let empty_rows: Vec<Value> = Vec::new();
-    let caba_tokyo23: &[Value] = caba.get("tokyo_23").and_then(|v| v.get("rows")).and_then(|v| v.as_array()).unwrap_or(&empty_rows);
-    let caba_tama: &[Value] = caba.get("tokyo_tama").and_then(|v| v.get("rows")).and_then(|v| v.as_array()).unwrap_or(&empty_rows);
-    let caba_national: &[Value] = caba.get("national").and_then(|v| v.get("rows")).and_then(|v| v.as_array()).unwrap_or(&empty_rows);
+    let caba_tokyo23: &[Value] = caba.get("tokyo_23").and_then(|v| v.get("rows")).and_then(|v| v.as_array()).map(|a| a.as_slice()).unwrap_or(&empty_rows);
+    let caba_tama: &[Value] = caba.get("tokyo_tama").and_then(|v| v.get("rows")).and_then(|v| v.as_array()).map(|a| a.as_slice()).unwrap_or(&empty_rows);
+    let caba_national: &[Value] = caba.get("national").and_then(|v| v.get("rows")).and_then(|v| v.as_array()).map(|a| a.as_slice()).unwrap_or(&empty_rows);
     let caba_disclaimer = get_disp(caba, "disclaimer");
     let caba_updated = get_disp(caba, "updated_at");
 
-    let jukujo_rows: &[Value] = jukujo.get("rows").and_then(|v| v.as_array()).unwrap_or(&empty_rows);
+    let jukujo_rows: &[Value] = jukujo.get("rows").and_then(|v| v.as_array()).map(|a| a.as_slice()).unwrap_or(&empty_rows);
     let jukujo_disclaimer = get_disp(jukujo, "disclaimer");
     let jukujo_updated = get_disp(jukujo, "updated_at");
 
-    let tvg_rows: &[Value] = tv_group.get("rows").and_then(|v| v.as_array()).unwrap_or(&empty_rows);
+    let tvg_rows: &[Value] = tv_group.get("rows").and_then(|v| v.as_array()).map(|a| a.as_slice()).unwrap_or(&empty_rows);
     let tvg_disclaimer = get_disp(tv_group, "disclaimer");
     let tvg_updated = get_disp(tv_group, "updated_at");
 
-    let tvn_rows: &[Value] = tv_normal.get("rows").and_then(|v| v.as_array()).unwrap_or(&empty_rows);
+    let tvn_rows: &[Value] = tv_normal.get("rows").and_then(|v| v.as_array()).map(|a| a.as_slice()).unwrap_or(&empty_rows);
     let tvn_disclaimer = get_disp(tv_normal, "disclaimer");
     let tvn_updated = get_disp(tv_normal, "updated_at");
 
@@ -1082,7 +1104,7 @@ fn render_ai_learning_links(cache: &Result<Value, String>) -> String {
     let mut techs = 0usize;
     let mut links = 0usize;
     for (prefix, label) in cats {
-        let mut keys: Vec<&String> = entries.keys().filter(|k| k.starts_with(&format!("{prefix}:"))).collect();
+        let mut keys: Vec<&str> = entries.iter().map(|(k, _)| k).filter(|k| k.starts_with(&format!("{prefix}:"))).collect();
         keys.sort_by_key(|k| k.to_lowercase());
         if keys.is_empty() {
             continue;
@@ -1147,7 +1169,7 @@ async fn render_aruaru_body() -> String {
     let eikaiwa = fetch_cache("aruaru-eikaiwa-ranking-cache.json").await;
     let ai_links = fetch_cache("aruaru/aruaru-tech-learning-ai-cache.json").await;
 
-    let empty = Value::Null;
+    let empty = Value::default(); // null
     let doda = doda.as_ref().unwrap_or(&empty);
     let tech = tech.as_ref().unwrap_or(&empty);
     let eikaiwa = eikaiwa.as_ref().unwrap_or(&empty);
@@ -1592,7 +1614,7 @@ async fn render_rakuten_mobile_body() -> String {
     let intl = fetch_cache("rakuten-intl-call-cache.json").await;
     let plat = fetch_cache("rakuten-platinum-cache.json").await;
 
-    let empty = Value::Null;
+    let empty = Value::default(); // null
     let rk = rk.as_ref().unwrap_or(&empty);
     let intl = intl.as_ref().unwrap_or(&empty);
     let plat = plat.as_ref().unwrap_or(&empty);
