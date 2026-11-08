@@ -2726,6 +2726,51 @@ fn render_summary_body() -> String {
     )
 }
 
+const AEON_TRAINING_HTML: &str = r#"<section id="aeon-ai-training" style="max-width:56rem;margin:1rem auto;font-family:sans-serif;">
+<div style="border-radius:14px;padding:2.2rem 1.2rem;text-align:center;color:#fff;background:linear-gradient(135deg,#0b6fd6 0%,#18b6e8 55%,#6fe0c8 100%);">
+<div style="font-size:clamp(1.6rem,5vw,2.8rem);font-weight:800;line-height:1.3;">仲間がいる環境で<br>IT・AIのスキルを</div>
+<div style="display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:1.2rem;font-weight:700;">
+<span style="background:#fff;color:#0b6fd6;border-radius:999px;padding:.5rem 1.1rem;">未経験者歓迎</span>
+<span style="background:#fff;color:#0b6fd6;border-radius:999px;padding:.5rem 1.1rem;">研修は無料</span>
+<span style="background:#fff;color:#0b6fd6;border-radius:999px;padding:.5rem 1.1rem;">AI研修+転職エージェント</span>
+</div>
+</div>
+<p style="font-size:1.15rem;line-height:1.8;margin:1rem .5rem;">株式会社エーオンも、未経験者にも優しい無料のAI研修+転職エージェントサービスを早急に始めたいと思っております。</p>
+<p style="font-size:1.05rem;line-height:1.8;margin:.5rem;">コピー&amp;ペースト、Google検索、YouTube検索、Claudeを使い、Rust+PoemやRPoemでスマホアプリやWebサイトを、日本語の母国語で開発できるように育成いたします。</p>
+<details style="margin:.5rem;border:1px solid #9bc;border-radius:8px;padding:.6rem 1rem;background:rgba(24,182,232,.07);">
+<summary style="cursor:pointer;font-weight:700;font-size:1.1rem;">掲載内容(クリックで全文を読む)</summary>
+<div style="line-height:1.85;margin-top:.8rem;">
+<h3>構想の背景</h3>
+<p>「コピペって、どうやるんですか?」「タイピングは指1本ずつ」。そんな方こそ歓迎したいと考えています。IT業界に興味はあるけれど自信がない、という最初の一歩を支える無料の研修と、その後の転職・就職の相談までをひとつの流れで提供することを目指します。立派な志望動機は要りません。ホンネで話せる場にしたいと考えています。</p>
+<h3>研修の流れ(予定)</h3>
+<ol>
+<li>STEP1: PCの起動とマウス操作</li>
+<li>STEP2: コピー&ペースト、ショートカットキー、タイピング</li>
+<li>STEP3: Excel・Wordなどの基本操作、ビジネスマナー、メールの書き方</li>
+<li>STEP4: デザインツールの基礎と、最新のAI研修(生成AIを使って簡単なアプリを作るところまで)</li>
+<li>STEP5: 実際の案件・仕事へのデビュー</li>
+</ol>
+<h3>AI研修で扱いたいこと</h3>
+<p>ChatGPT・Gemini・Claude・Cursorなどの生成AIの使い方を、手を動かしながら学びます。1週間ほどで小さなアプリを完成させる体験を通じて「私にもできた」という自信を持ってもらうことが狙いです。将来はIT サポート、AIエンジニア、ゲーム開発など、時代に左右されないスキルを目指せる道筋をつくります。</p>
+<h3>転職エージェントとして</h3>
+<ul>
+<li>研修で身についたスキルに合う企業を、一緒に探します。</li>
+<li>月に1回程度の面談で「やりたいこと」を聞き、キャリアの相談に乗ります。</li>
+<li>資格(ITパスポート、MOS、基本情報技術者など)の取得を応援します。</li>
+<li>残業が少ない、休みが取りやすい、リモートも可能、など働き方の希望も大切にします。</li>
+</ul>
+<h3>こんな方に</h3>
+<ul>
+<li>未経験からITの仕事に挑戦したい方、第二新卒・社会人デビューの方</li>
+<li>手に職をつけて長く働きたい方</li>
+<li>新しいことを学ぶのが好きな方</li>
+</ul>
+<p style="font-size:.9rem;opacity:.8;">※ 現在準備中の構想です。内容・時期は変更になることがあります。参考にした求人: <a href="https://jp.indeed.com/viewjob?from=appsharedroid&amp;jk=c2dfde0f8c77f92b" target="_blank" rel="noopener noreferrer">株式会社ライトパス様の求人(Indeed)</a></p>
+</div>
+</details>
+</section>
+"#;
+
 fn render_top_body(query: &std::collections::HashMap<String, String>) -> String {
     // PHP版`REGIONS`配列(`index.php` 1762行目)と同じ並び順・
     // `REGION_LABELS`(1763〜1770行目)と同じ英語見出しを踏襲、日本語は
@@ -3489,7 +3534,7 @@ async fn main() -> Result<(), std::io::Error> {
                     let query = hyper_compat::query_params(&req);
                     hyper_compat::html_response(StatusCode::OK, page_shell("AUDIOCAFE | World — Select Your Language", &render_top_body(&query)).replacen("<body>
 ", &format!("<body>
-{}", TOP_AMP_HTML), 1))
+{}{}", AEON_TRAINING_HTML, TOP_AMP_HTML), 1))
                 })
             }),
         )
