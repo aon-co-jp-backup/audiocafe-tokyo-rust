@@ -277,3 +277,9 @@ Rust側に実装のないパスが軒並み404になる実害があることを�
 - aruaru-llm の REST 全廃に伴い、本リポジトリの呼び出し先を `POST /aruaru_llm.v1.Llm/<Method>`(JSON本文)へ変更した(旧 `/v1/...` は aruaru-llm 側で削除済み)。
 - 対象は aruaru-llm を呼ぶ箇所のみ。本リポジトリ自身のAPI・他サービス(aruaru-search 等)の呼び出しは別途。
 - 未検証: ビルド/実サーバー往復(aruaru-llm の `connect-migration` ブランチが VPS 未反映のため)。aruaru-llm の main マージ・VPS反映と同時に反映すること。
+
+## 2026-11-09 キャッシュJSONの読み込みを parse_secure_sonic へ(完了)
+- `src/main.rs` のキャッシュJSONを `rust_json::parse_secure_sonic`(上限: 16MiB・深さ32・重複キー拒否)+ `sonic_rs::Value` で読む形に切替(`a949306`)。
+- 旧 `serde_json::Value` はキーがアルファベット順だったため `sorted_entries` で同じ順に揃えた。擬似データ(入れ子・未整列キー・数値・真偽値・null・URL・日本語・エスケープ)で旧/新の出力が**完全に同一**なことを実測し、cargo test 15件成功。
+- 本番(`/root/audiocafe-tokyo-rust`)へWSLビルド→scp→入れ替え。反映前後で7ページ(/, /aruaru, /aruaru-lady, /rakuten-mobile, /discover, /summary, /healthz)のHTMLがバイト単位で同一。ロールバック用に旧バイナリは `target/release/audiocafe-tokyo-server.before-sonic-20261109`。
+- 未適用: `cron.rs`・`scraper.rs` は `parse_strict` + `serde_json` のまま(小さな書き込み中心で速度の利点が薄い)。VPSの worktree `/root/repository/atr-sonic`(旧WIPブランチ)は不要になったが残してある。
