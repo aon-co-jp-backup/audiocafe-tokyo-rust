@@ -177,6 +177,7 @@ dependencies = [
  "rust-json 0.1.0",
  "serde",
  "serde_json",
+ "sonic-rs 0.5.10",
  "tokio",
  "tracing",
  "tracing-subscriber",
@@ -2731,7 +2732,8 @@ version = "0.1.0"
 dependencies = [
  "serde",
  "serde_json",
- "thiserror 1.0.69",
+ "sonic-rs 0.5.10",
+ "thiserror 2.0.21",
 ]
 
 [[package]]
