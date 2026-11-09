@@ -2793,6 +2793,8 @@ const AEON_TRAINING_HTML: &str = r#"<section id="aeon-ai-training" style="max-wi
 </section>
 "#;
 
+const HDD_LINKS_HTML: &str = r#"<p class="blog-link" style="font-size:1.4rem;text-align:center;margin:.6rem 0"><a href="https://kakaku.com/item/K0001653816/" target="_blank" rel="noopener noreferrer">HDDコーナー　2TB</a></p><p class="blog-link" style="font-size:1.4rem;text-align:center;margin:.6rem 0"><a href="https://kakaku.com/item/K0001651227/" target="_blank" rel="noopener noreferrer">HDDコーナー　4TB</a></p><p class="blog-link" style="font-size:1.4rem;text-align:center;margin:.6rem 0"><a href="https://kakaku.com/item/K0001651228/" target="_blank" rel="noopener noreferrer">HDDコーナー　6TB</a></p><p class="blog-link" style="font-size:1.4rem;text-align:center;margin:.6rem 0"><a href="https://kakaku.com/item/K0001654550/" target="_blank" rel="noopener noreferrer">HDDコーナー　8TB</a></p>"#;
+
 fn render_top_body(query: &std::collections::HashMap<String, String>) -> String {
     // PHP版`REGIONS`配列(`index.php` 1762行目)と同じ並び順・
     // `REGION_LABELS`(1763〜1770行目)と同じ英語見出しを踏襲、日本語は
@@ -2969,10 +2971,6 @@ fn render_top_body(query: &std::collections::HashMap<String, String>) -> String 
     format!(
         r##"{TOP_STYLE}
 <div class="top-page">
-<p class="blog-link" style="font-size:1.4rem;text-align:center"><a href="https://kakaku.com/item/K0001653816/" target="_blank" rel="noopener noreferrer">HDDコーナー　2TB</a></p>
-<p class="blog-link" style="font-size:1.4rem;text-align:center"><a href="https://kakaku.com/item/K0001651227/" target="_blank" rel="noopener noreferrer">HDDコーナー　4TB</a></p>
-<p class="blog-link" style="font-size:1.4rem;text-align:center"><a href="https://kakaku.com/item/K0001651228/" target="_blank" rel="noopener noreferrer">HDDコーナー　6TB</a></p>
-<p class="blog-link" style="font-size:1.4rem;text-align:center"><a href="https://kakaku.com/item/K0001654550/" target="_blank" rel="noopener noreferrer">HDDコーナー　8TB</a></p>
 <div class="header">
 <span class="logo">audiocafe.tokyo</span>
 <p class="subtitle">Please select your native language.</p>
@@ -3560,7 +3558,7 @@ async fn main() -> Result<(), std::io::Error> {
                     let query = hyper_compat::query_params(&req);
                     hyper_compat::html_response(StatusCode::OK, page_shell("AUDIOCAFE | World — Select Your Language", &render_top_body(&query)).replacen("<body>
 ", &format!("<body>
-{}{}", AEON_TRAINING_HTML, TOP_AMP_HTML), 1))
+{}{}{}", HDD_LINKS_HTML, AEON_TRAINING_HTML, TOP_AMP_HTML), 1))
                 })
             }),
         )
