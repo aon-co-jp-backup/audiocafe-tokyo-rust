@@ -2793,7 +2793,14 @@ const AEON_TRAINING_HTML: &str = r#"<section id="aeon-ai-training" style="max-wi
 </section>
 "#;
 
-const HDD_LINKS_HTML: &str = r#"<div class="mynavi-job" style="max-width:42rem;margin:1rem auto;padding:.8rem 1rem;border:1px solid rgba(128,128,128,.5);border-radius:10px;text-align:left;line-height:1.8;font-size:1.1rem">
+const HDD_LINKS_HTML: &str = r#"<section class="top-fuku" style="max-width:360px;margin:1rem auto;text-align:center;">
+<p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://ameblo.jp/www-aon/entry-12984404414.html" target="_blank" rel="noopener noreferrer">捨てられそうな松の木が宝に！中国の驚きの菌類栽培 #茯苓（ぶくりょう） #養殖 #漢方</a></p>
+<div style="position:relative;width:100%;aspect-ratio:9/16;background:#000;border-radius:8px;overflow:hidden;">
+<button type="button" aria-label="動画を再生 / Play video" style="all:unset;position:absolute;inset:0;cursor:pointer;" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/wcpa7Suy034?autoplay=1&amp;playsinline=1&amp;rel=0';f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;f.title='茯苓';f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';this.replaceWith(f)"><img src="https://i.ytimg.com/vi/wcpa7Suy034/hqdefault.jpg" alt="捨てられそうな松の木が宝に！中国の驚きの菌類栽培 #茯苓（ぶくりょう） #養殖 #漢方" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:30px;line-height:64px;text-align:center;">▶</span></button>
+</div>
+<p style="margin:.6rem 0 0;"><a href="https://www.youtube.com/shorts/wcpa7Suy034" target="_blank" rel="noopener noreferrer">YouTube</a> ・ <a href="https://www.facebook.com/reel/1845761623108295?locale=ja_JP" target="_blank" rel="noopener noreferrer">Facebook リール</a></p>
+</section>
+<div class="mynavi-job" style="max-width:42rem;margin:1rem auto;padding:.8rem 1rem;border:1px solid rgba(128,128,128,.5);border-radius:10px;text-align:left;line-height:1.8;font-size:1.1rem">
 <p style="margin:0 0 .4rem;font-weight:700">8年連続ホワイト企業で【プロジェクト管理】平均年収636万円</p>
 <p style="margin:0 0 .4rem">アイアール株式会社</p>
 <p style="margin:0 0 .6rem">＼8割以上が未経験スタート／年間休日125日★東証プライム企業G</p>
