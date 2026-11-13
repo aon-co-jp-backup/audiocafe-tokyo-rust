@@ -2793,7 +2793,13 @@ const AEON_TRAINING_HTML: &str = r#"<section id="aeon-ai-training" style="max-wi
 </section>
 "#;
 
-const HDD_LINKS_HTML: &str = r#"<section class="top-fuku" style="max-width:360px;margin:1rem auto;text-align:center;">
+const HDD_LINKS_HTML: &str = r#"<section class="top-direct" style="max-width:640px;margin:1rem auto;text-align:center;">
+<p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://www.youtube.com/watch?v=yq0yDVBjqVM" target="_blank" rel="noopener noreferrer">アメリカ政府による国際法違反な日本支配を改善する必要があります。ダイレクト出版。</a></p>
+<div style="position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden;">
+<button type="button" aria-label="動画を再生 / Play video" style="all:unset;position:absolute;inset:0;cursor:pointer;" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/yq0yDVBjqVM?autoplay=1&amp;playsinline=1&amp;rel=0';f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;f.title='ダイレクト出版';f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';this.replaceWith(f)"><img src="https://i.ytimg.com/vi/yq0yDVBjqVM/hqdefault.jpg" alt="アメリカ政府による国際法違反な日本支配を改善する必要があります。ダイレクト出版。" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:30px;line-height:64px;text-align:center;">▶</span></button>
+</div>
+</section>
+<section class="top-fuku" style="max-width:360px;margin:1rem auto;text-align:center;">
 <p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://ameblo.jp/www-aon/entry-12984404414.html" target="_blank" rel="noopener noreferrer">捨てられそうな松の木が宝に！中国の驚きの菌類栽培 #茯苓（ぶくりょう） #養殖 #漢方</a></p>
 <div style="position:relative;width:100%;aspect-ratio:9/16;background:#000;border-radius:8px;overflow:hidden;">
 <button type="button" aria-label="動画を再生 / Play video" style="all:unset;position:absolute;inset:0;cursor:pointer;" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/wcpa7Suy034?autoplay=1&amp;playsinline=1&amp;rel=0';f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;f.title='茯苓';f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';this.replaceWith(f)"><img src="https://i.ytimg.com/vi/wcpa7Suy034/hqdefault.jpg" alt="捨てられそうな松の木が宝に！中国の驚きの菌類栽培 #茯苓（ぶくりょう） #養殖 #漢方" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:30px;line-height:64px;text-align:center;">▶</span></button>
