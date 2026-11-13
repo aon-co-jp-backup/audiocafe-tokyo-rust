@@ -2800,6 +2800,12 @@ const HDD_LINKS_HTML: &str = r#"<section class="top-fuku" style="max-width:360px
 </div>
 <p style="margin:.6rem 0 0;"><a href="https://www.youtube.com/shorts/wcpa7Suy034" target="_blank" rel="noopener noreferrer">YouTube</a> ・ <a href="https://www.facebook.com/reel/1845761623108295?locale=ja_JP" target="_blank" rel="noopener noreferrer">Facebook リール</a></p>
 </section>
+<section class="top-fuku-note" style="max-width:42rem;margin:1rem auto;padding:.8rem 1rem;border:1px solid rgba(128,128,128,.5);border-radius:10px;text-align:left;line-height:1.8;font-size:1.05rem">
+<p style="margin:0 0 .4rem;font-weight:700">茯苓（ぶくりょう）とは</p>
+<p style="margin:0 0 .5rem">アカマツやクロマツの枯れ木の根に寄生するキノコ（マツホド）の菌核を使う生薬です。余分な水分の巡りを整える、気持ちを落ち着かせる、胃腸の調子を整える、といった働きで知られ、五苓散・桂枝茯苓丸・苓桂朮甘湯・茯苓飲など、多くの漢方処方に配合されています。</p>
+<p style="margin:0 0 .5rem"><a href="https://www.tsumura.co.jp/kampo-view/know/syouyaku/ha013.html" target="_blank" rel="noopener noreferrer">詳しくはツムラの生薬辞典（茯苓）へ</a></p>
+<p style="margin:0;font-size:.9rem;opacity:.8">※ 一般的な紹介であり、医療上の助言ではありません。服用は医師・薬剤師にご相談ください。</p>
+</section>
 <div class="mynavi-job" style="max-width:42rem;margin:1rem auto;padding:.8rem 1rem;border:1px solid rgba(128,128,128,.5);border-radius:10px;text-align:left;line-height:1.8;font-size:1.1rem">
 <p style="margin:0 0 .4rem;font-weight:700">8年連続ホワイト企業で【プロジェクト管理】平均年収636万円</p>
 <p style="margin:0 0 .4rem">アイアール株式会社</p>
