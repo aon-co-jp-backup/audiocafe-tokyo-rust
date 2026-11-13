@@ -2870,6 +2870,10 @@ const HDD_LINKS_HTML: &str = r#"<section class="top-direct" style="max-width:640
 </div>
 
 </section>
+<section class="top-kinoko" style="max-width:640px;margin:1rem auto;text-align:center;line-height:1.8;">
+<p style="font-size:1.2rem;font-weight:700;margin:0 0 .3rem;">黒トリュフ　白トリュフ　養殖　栽培<br><a href="https://www.youtube.com/results?search_query=%E9%BB%92%E3%83%88%E3%83%AA%E3%83%A5%E3%83%95%E3%80%80%E7%99%BD%E3%83%88%E3%83%AA%E3%83%A5%E3%83%95%E3%80%80%E9%A4%8A%E6%AE%96%E3%80%80%E6%A0%BD%E5%9F%B9" target="_blank" rel="noopener noreferrer">▶️ YouTubeで検索</a></p>
+<p style="font-size:1.2rem;font-weight:700;margin:1rem 0 0;">松茸 椎茸 ハイブリッド<br><a href="https://www.google.com/search?q=%E6%9D%BE%E8%8C%B8+%E6%A4%8E%E8%8C%B8+%E3%83%8F%E3%82%A4%E3%83%96%E3%83%AA%E3%83%83%E3%83%89" target="_blank" rel="noopener noreferrer">🔎 Googleで検索</a></p>
+</section>
 <section class="top-cnf" style="max-width:360px;margin:1rem auto;text-align:center;">
 <p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://www.facebook.com/reel/2232388690988796?locale=ja_JP" target="_blank" rel="noopener noreferrer">【衝撃】鉄より強く、鉄より軽い。日本製「セルロースナノファイバー」が航空機を変える？</a></p>
 <div style="position:relative;width:100%;aspect-ratio:9/16;background:#222;border-radius:8px;overflow:hidden;">
