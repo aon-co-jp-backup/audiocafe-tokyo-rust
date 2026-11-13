@@ -2812,6 +2812,13 @@ const HDD_LINKS_HTML: &str = r#"<section class="top-direct" style="max-width:640
 <p style="margin:0 0 .5rem"><a href="https://www.tsumura.co.jp/kampo-view/know/syouyaku/ha013.html" target="_blank" rel="noopener noreferrer">詳しくはツムラの生薬辞典（茯苓）へ</a></p>
 <p style="margin:0;font-size:.9rem;opacity:.8">※ 一般的な紹介であり、医療上の助言ではありません。服用は医師・薬剤師にご相談ください。</p>
 </section>
+<section class="top-cnf" style="max-width:360px;margin:1rem auto;text-align:center;">
+<p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://www.facebook.com/reel/2232388690988796?locale=ja_JP" target="_blank" rel="noopener noreferrer">【衝撃】鉄より強く、鉄より軽い。日本製「セルロースナノファイバー」が航空機を変える？</a></p>
+<div style="position:relative;width:100%;aspect-ratio:9/16;background:#222;border-radius:8px;overflow:hidden;">
+<button type="button" aria-label="動画を再生 / Play video" style="all:unset;position:absolute;inset:0;cursor:pointer;" onclick="var f=document.createElement('iframe');f.src='https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2232388690988796%2F&amp;show_text=false&amp;autoplay=true';f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;f.title='セルロースナノファイバー';f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';this.replaceWith(f)"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:30px;line-height:64px;text-align:center;">▶</span><span style="position:absolute;left:0;right:0;bottom:1rem;color:#fff;font-size:1rem;">クリックで再生（Facebook）</span></button>
+</div>
+<p style="margin:.6rem 0 0;"><a href="https://www.facebook.com/reel/2232388690988796?locale=ja_JP" target="_blank" rel="noopener noreferrer">Facebook で開く</a></p>
+</section>
 <div class="mynavi-job" style="max-width:42rem;margin:1rem auto;padding:.8rem 1rem;border:1px solid rgba(128,128,128,.5);border-radius:10px;text-align:left;line-height:1.8;font-size:1.1rem">
 <p style="margin:0 0 .4rem;font-weight:700">8年連続ホワイト企業で【プロジェクト管理】平均年収636万円</p>
 <p style="margin:0 0 .4rem">アイアール株式会社</p>
