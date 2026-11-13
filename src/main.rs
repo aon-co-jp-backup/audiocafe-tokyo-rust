@@ -2814,6 +2814,13 @@ const HDD_LINKS_HTML: &str = r#"<section class="top-direct" style="max-width:640
 <p style="margin:0 0 .5rem"><a href="https://www.tsumura.co.jp/kampo-view/know/syouyaku/ha013.html" target="_blank" rel="noopener noreferrer">詳しくはツムラの生薬辞典（茯苓）へ</a></p>
 <p style="margin:0;font-size:.9rem;opacity:.8">※ 一般的な紹介であり、医療上の助言ではありません。服用は医師・薬剤師にご相談ください。</p>
 </section>
+<section class="top-shoga" style="max-width:360px;margin:1rem auto;text-align:center;">
+<p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://www.youtube.com/shorts/JYFpDyd45RQ" target="_blank" rel="noopener noreferrer">土は同じでも、収益は10倍!?</a></p>
+<div style="position:relative;width:100%;aspect-ratio:9/16;background:#000;border-radius:8px;overflow:hidden;">
+<button type="button" aria-label="動画を再生 / Play video" style="all:unset;position:absolute;inset:0;cursor:pointer;" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/JYFpDyd45RQ?autoplay=1&amp;playsinline=1&amp;rel=0';f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;f.title='土は同じでも、収益は10倍!?';f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';this.replaceWith(f)"><img src="https://i.ytimg.com/vi/JYFpDyd45RQ/hqdefault.jpg" alt="土は同じでも、収益は10倍!?" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:30px;line-height:64px;text-align:center;">▶</span></button>
+</div>
+<p style="margin:.6rem 0 0;font-size:.95rem;"><a href="https://www.youtube.com/hashtag/%E7%94%9F%E5%A7%9C%E6%A0%BD%E5%9F%B9/shorts" target="_blank" rel="noopener noreferrer">#生姜栽培</a> <a href="https://www.youtube.com/hashtag/%E5%84%B2%E3%81%8B%E3%82%8B%E8%BE%B2%E6%A5%AD/shorts" target="_blank" rel="noopener noreferrer">#儲かる農業</a> <a href="https://www.youtube.com/hashtag/%E9%AB%98%E5%8F%8E%E7%9B%8A%E4%BD%9C%E7%89%A9/shorts" target="_blank" rel="noopener noreferrer">#高収益作物</a> <a href="https://www.youtube.com/hashtag/%E7%95%91%E3%83%A9%E3%82%A4%E3%83%95/shorts" target="_blank" rel="noopener noreferrer">#畑ライフ</a></p>
+</section>
 <section class="top-kanzo" style="max-width:360px;margin:1rem auto;text-align:center;">
 <p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://www.youtube.com/shorts/SR_UsxZmtzs" target="_blank" rel="noopener noreferrer">漢方薬の7割に入る草を国産に</a></p>
 <div style="position:relative;width:100%;aspect-ratio:9/16;background:#000;border-radius:8px;overflow:hidden;">
