@@ -2801,6 +2801,21 @@ const HDD_LINKS_HTML: &str = r#"<section class="top-direct" style="max-width:640
 <p style="font-size:1.2rem;margin:.8rem 0 0;"><a href="https://in.topgunreport.jp/taur_2611?cap=HS3" target="_blank" rel="noopener noreferrer">https://in.topgunreport.jp/taur_2611?cap=HS3</a></p>
 <p style="font-size:1.2rem;margin:.4rem 0 0;"><a href="https://dpub.jp/login/" target="_blank" rel="noopener noreferrer">https://dpub.jp/login/</a></p>
 </section>
+<section class="top-tsumura" style="max-width:360px;margin:1rem auto;text-align:center;">
+<p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://www.youtube.com/shorts/y0Qk_unFYcA" target="_blank" rel="noopener noreferrer">【国産へ】ツムラ、生薬の原材料「脱中国」へ</a></p>
+<div style="position:relative;width:100%;aspect-ratio:9/16;background:#000;border-radius:8px;overflow:hidden;">
+<button type="button" aria-label="動画を再生 / Play video" style="all:unset;position:absolute;inset:0;cursor:pointer;" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/y0Qk_unFYcA?autoplay=1&amp;playsinline=1&amp;rel=0';f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;f.title='【国産へ】ツムラ、生薬の原材料「脱中国」へ';f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';this.replaceWith(f)"><img src="https://i.ytimg.com/vi/y0Qk_unFYcA/hqdefault.jpg" alt="【国産へ】ツムラ、生薬の原材料「脱中国」へ" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:30px;line-height:64px;text-align:center;">▶</span></button>
+</div>
+<p style="margin:.6rem 0 0;font-size:.95rem;"><a href="https://www.youtube.com/hashtag/%E4%B8%AD%E5%9B%BD/shorts" target="_blank" rel="noopener noreferrer">#中国</a> <a href="https://www.youtube.com/hashtag/%E7%94%9F%E8%96%AC/shorts" target="_blank" rel="noopener noreferrer">#生薬</a> <a href="https://www.youtube.com/hashtag/%E3%83%84%E3%83%A0%E3%83%A9/shorts" target="_blank" rel="noopener noreferrer">#ツムラ</a></p>
+</section>
+<section class="top-tsumura-note" style="max-width:42rem;margin:1rem auto;padding:.8rem 1rem;border:1px solid rgba(128,128,128,.5);border-radius:10px;text-align:left;line-height:1.8;word-break:break-all;">
+<p style="margin:0 0 .5rem;font-weight:700">ツムラ、生薬の脱中国へ国産化急ぐ　漢方需要拡大で栽培支援</p>
+<p style="margin:0 0 .5rem"><a href="https://www.nikkei.com/article/DGXZQOUC097F30Z00C26A9000000/" target="_blank" rel="noopener noreferrer">https://www.nikkei.com/article/DGXZQOUC097F30Z00C26A9000000/</a></p>
+<p style="margin:0 0 .5rem">日本でも夕張などに農場を持っているツムラ<br><a href="https://www.tsumura.co.jp/corporate/quality/production-areas/" target="_blank" rel="noopener noreferrer">https://www.tsumura.co.jp/corporate/quality/production-areas/</a></p>
+<p style="margin:0 0 .5rem">2014年ぐらいから生産地の多角化を進めていましたが<br><a href="https://www.nikkei.com/article/DGKKASDX27H1T_X21C14A0FFE000/" target="_blank" rel="noopener noreferrer">https://www.nikkei.com/article/DGKKASDX27H1T_X21C14A0FFE000/</a></p>
+<p style="margin:0 0 .5rem">それを加速させるみたいです。<br>その一因が「価格高騰」「安定供給」<br><a href="https://bondmba.bbt757.com/post-events-archive/post-1538/" target="_blank" rel="noopener noreferrer">https://bondmba.bbt757.com/post-events-archive/post-1538/</a></p>
+<p style="margin:0">今のご時世、何がどうなるか分かりませんから、国内の自社農場を持つのは大切です。<br><br>これ、タネや肥料、農薬も国産化できたらすごいですね～</p>
+</section>
 <section class="top-fuku" style="max-width:360px;margin:1rem auto;text-align:center;">
 <p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://ameblo.jp/www-aon/entry-12984404414.html" target="_blank" rel="noopener noreferrer">捨てられそうな松の木が宝に！中国の驚きの菌類栽培 #茯苓（ぶくりょう） #養殖 #漢方</a></p>
 <div style="position:relative;width:100%;aspect-ratio:9/16;background:#000;border-radius:8px;overflow:hidden;">
