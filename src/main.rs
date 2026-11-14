@@ -2799,7 +2799,10 @@ const HDD_LINKS_HTML: &str = r#"<section class="top-direct" style="max-width:640
 <button type="button" aria-label="動画を再生 / Play video" style="all:unset;position:absolute;inset:0;cursor:pointer;" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/yq0yDVBjqVM?autoplay=1&amp;playsinline=1&amp;rel=0';f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;f.title='ダイレクト出版';f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';this.replaceWith(f)"><img src="https://i.ytimg.com/vi/yq0yDVBjqVM/hqdefault.jpg" alt="アメリカ政府による日本支配問題。ダイレクト出版。" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:30px;line-height:64px;text-align:center;">▶</span></button>
 </div>
 <p style="font-size:1.2rem;margin:.8rem 0 0;"><a href="https://in.topgunreport.jp/taur_2611?cap=HS3" target="_blank" rel="noopener noreferrer">https://in.topgunreport.jp/taur_2611?cap=HS3</a></p>
-<p style="font-size:1.2rem;margin:.4rem 0 0;"><a href="https://dpub.jp/login/" target="_blank" rel="noopener noreferrer">https://dpub.jp/login/</a></p>
+<p style="font-size:1.2rem;margin:.4rem 0 0;">ダイレクト出版<br><a href="https://www.d-publishing.jp/" target="_blank" rel="noopener noreferrer">https://www.d-publishing.jp/</a></p>
+<p style="font-size:1.2rem;margin:.4rem 0 0;">LOGIN<br><a href="https://dpub.jp/login/" target="_blank" rel="noopener noreferrer">https://dpub.jp/login/</a></p>
+<p style="font-size:1.2rem;margin:.4rem 0 0;">DIRECT Reads　Androidスマホで講座が見れます。<br><a href="https://play.google.com/store/apps/details?id=jp.d_publishing.directreads" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=jp.d_publishing.directreads</a></p>
+<p style="font-size:1.2rem;margin:.4rem 0 0;">DIRECT Academy<br><a href="https://play.google.com/store/apps/details?id=jp.d_publishing.directacademy&amp;hl=ja" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=jp.d_publishing.directacademy&amp;hl=ja</a></p>
 </section>
 <section class="top-tsumura" style="max-width:360px;margin:1rem auto;text-align:center;">
 <p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://www.youtube.com/shorts/y0Qk_unFYcA" target="_blank" rel="noopener noreferrer">【国産へ】ツムラ、生薬の原材料「脱中国」へ</a></p>
@@ -2873,6 +2876,9 @@ const HDD_LINKS_HTML: &str = r#"<section class="top-direct" style="max-width:640
 <section class="top-kinoko" style="max-width:640px;margin:1rem auto;text-align:center;line-height:1.8;">
 <p style="font-size:1.2rem;font-weight:700;margin:0 0 .3rem;">黒トリュフ　白トリュフ　養殖　栽培<br><a href="https://www.youtube.com/results?search_query=%E9%BB%92%E3%83%88%E3%83%AA%E3%83%A5%E3%83%95%E3%80%80%E7%99%BD%E3%83%88%E3%83%AA%E3%83%A5%E3%83%95%E3%80%80%E9%A4%8A%E6%AE%96%E3%80%80%E6%A0%BD%E5%9F%B9" target="_blank" rel="noopener noreferrer">▶️ YouTubeで検索</a></p>
 <p style="font-size:1.2rem;font-weight:700;margin:1rem 0 0;">松茸 椎茸 ハイブリッド<br><a href="https://www.google.com/search?q=%E6%9D%BE%E8%8C%B8+%E6%A4%8E%E8%8C%B8+%E3%83%8F%E3%82%A4%E3%83%96%E3%83%AA%E3%83%83%E3%83%89" target="_blank" rel="noopener noreferrer">🔎 Googleで検索</a></p>
+</section>
+<section class="top-idea" style="max-width:42rem;margin:1rem auto;padding:.8rem 1rem;border:1px solid rgba(128,128,128,.5);border-radius:10px;text-align:left;line-height:1.8;font-size:1.1rem">
+<p style="margin:0">Digital Art Museum （デジタル美術館のアイデア）＆　保育園＆幼稚園＆小中高校＆　小学生と中学生向け学童保育　＆　温泉はその土地で出なければ配達とスーパー銭湯　ボーリング　＆　GAMEセンター　＆JAZZカフェレストラン（学校給食＆社食）＆　３WAYカーオーディオは、フロントのピラーに（スーパー）ツィーター＆スコーカー埋め込み対応をイエローハット＆オートバックスのお店も一緒に経営して行なうサービス＆不動産と建設と工務店と新車と中古車の自動車の売買と保険とスマホはフィルムやガラスフィルムも自動で貼る自動契約機能付き自動販売機などの融合店のアイデア</p>
 </section>
 <section class="top-cnf" style="max-width:360px;margin:1rem auto;text-align:center;">
 <p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://www.facebook.com/reel/2232388690988796?locale=ja_JP" target="_blank" rel="noopener noreferrer">【衝撃】鉄より強く、鉄より軽い。日本製「セルロースナノファイバー」が航空機を変える？</a></p>
