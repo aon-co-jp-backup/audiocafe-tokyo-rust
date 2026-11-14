@@ -2794,7 +2794,7 @@ const AEON_TRAINING_HTML: &str = r#"<section id="aeon-ai-training" style="max-wi
 "#;
 
 const HDD_LINKS_HTML: &str = r#"<section class="top-minkan" style="max-width:42rem;margin:1rem auto;text-align:center;">
-<p style="font-size:1.2rem;margin:1rem 0;">民間ガン治療法<br><br>ボランティア情報<br><br><a href="https://ameblo.jp/www-aon/entry-12981774738.html" target="_blank" rel="noopener noreferrer">https://ameblo.jp/www-aon/entry-12981774738.html</a></p>
+<p style="font-size:1.2rem;margin:1rem 0;">民間ガン治療法<br><br>ボランティア情報<br><br><a href="https://ameblo.jp/www-aon/entry-12981774738.html" target="_blank" rel="noopener noreferrer">https://ameblo.jp/www-aon/entry-12981774738.html</a><br><a href="https://ameblo.jp/www-aon/entry-12984460080.html" target="_blank" rel="noopener noreferrer">https://ameblo.jp/www-aon/entry-12984460080.html</a></p>
 </section>
 <section class="top-rakuno" style="max-width:42rem;margin:1rem auto;padding:.8rem 1rem;border:1px solid rgba(128,128,128,.5);border-radius:10px;text-align:left;line-height:1.8;">
 <p style="margin:0 0 .5rem;font-weight:700;font-size:1.2rem">酪農家が黒字になる話</p>
