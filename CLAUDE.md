@@ -1594,3 +1594,7 @@ Rust版のものになっているかを必ず確認すること(ステータス
 
 ## REST全廃の確認(2026-11-07)
 全ルートを調査した結果、**自前のAPIは0本**。ルートはHTMLページ(/ /help /discover /ranking/:slug /page/:slug /aruaru* /rakuten-mobile /summary)と/healthzだけ(全てGET)。 いずれも方針の**例外(ヘルスチェック・静的/HTML配信)**で、コードは変更していない。今後APIを足す場合は Connect(`POST /<パッケージ>.<Service>/<Method>`、JSONはRS-JSON)で作る。
+
+## 2026-11-15 JSON読み込みの切替完了 / JSON reading switch completed
+- **日本語**: キャッシュJSONは `parse_secure_sonic`+`sonic_rs::Value` で読む(出力は旧実装と同一、本番反映済み)。再開用メッセージは `PORTING.md` 末尾「2026-11-15 到達点・再開用メッセージ」。
+- **English**: Cache JSON is read with `parse_secure_sonic` + `sonic_rs::Value` (output identical to the old code, deployed). The resume message is at the end of `PORTING.md` ("2026-11-15 到達点・再開用メッセージ").

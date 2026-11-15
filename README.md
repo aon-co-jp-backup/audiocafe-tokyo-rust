@@ -154,3 +154,7 @@ Apache-2.0 OR MIT
 - **WASM по-прежнему остаётся технологией для интерфейса.** Изменилось лишь то, что вызываемый им API теперь построен на Connect.
 - Интерфейсы, форма которых задана внешним стандартом (ACME, обратные вызовы OAuth, вебхуки сторонних сервисов, проверки работоспособности, статические файлы, OTLP), остаются обычным HTTP.
 - **Если есть сомнения — выбирайте Connect.**
+
+## 2026-11-15 JSON読み込みの切替完了 / JSON reading switch completed
+- **日本語**: キャッシュJSONは `parse_secure_sonic`+`sonic_rs::Value` で読む(出力は旧実装と同一、本番反映済み)。再開用メッセージは `PORTING.md` 末尾「2026-11-15 到達点・再開用メッセージ」。
+- **English**: Cache JSON is read with `parse_secure_sonic` + `sonic_rs::Value` (output identical to the old code, deployed). The resume message is at the end of `PORTING.md` ("2026-11-15 到達点・再開用メッセージ").

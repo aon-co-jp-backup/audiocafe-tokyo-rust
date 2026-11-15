@@ -283,3 +283,35 @@ Rust側に実装のないパスが軒並み404になる実害があることを�
 - 旧 `serde_json::Value` はキーがアルファベット順だったため `sorted_entries` で同じ順に揃えた。擬似データ(入れ子・未整列キー・数値・真偽値・null・URL・日本語・エスケープ)で旧/新の出力が**完全に同一**なことを実測し、cargo test 15件成功。
 - 本番(`/root/audiocafe-tokyo-rust`)へWSLビルド→scp→入れ替え。反映前後で7ページ(/, /aruaru, /aruaru-lady, /rakuten-mobile, /discover, /summary, /healthz)のHTMLがバイト単位で同一。ロールバック用に旧バイナリは `target/release/audiocafe-tokyo-server.before-sonic-20261109`。
 - 未適用: `cron.rs`・`scraper.rs` は `parse_strict` + `serde_json` のまま(小さな書き込み中心で速度の利点が薄い)。VPSの worktree `/root/repository/atr-sonic`(旧WIPブランチ)は不要になったが残してある。
+
+## 2026-11-15 到達点・再開用メッセージ(別アカウントでの再開用)
+
+### 日本語
+- **到達点**: キャッシュJSONの読み込みを `rust_json::parse_secure_sonic`(上限16MiB・深さ32・重複キー拒否)+`sonic_rs::Value` へ切替済み(`a949306`)。旧実装と出力が完全に同一なことを疑似データで実測、`cargo test` 15件成功、本番(`/root/audiocafe-tokyo-rust`、WSLビルド→scp)へ反映し7ページ(`/` `/aruaru` `/aruaru-lady` `/rakuten-mobile` `/discover` `/summary` `/healthz`)がバイト単位で同一。旧バイナリは `target/release/audiocafe-tokyo-server.before-sonic-20261109`(ロールバック用)。
+- **REST全廃**: 自前APIは0本(全ルートが表示ページ。例外のみ)。
+- **未了**: `cron.rs`・`scraper.rs` は `parse_strict`+`serde_json` のまま(小さな書き込み中心)。表示速度の実測は未実施。VPSの旧worktree `/root/repository/atr-sonic`(ブランチ `sonic-switch-20261016`)は不要だが残してある。
+- **落とし穴**: `/mnt/...` はGit Bashが書き換えるのでWSLはPowerShellから呼ぶ。VPSでビルドしない(WSLビルドのglibcは2.38までしか使わず、本番の2.39で動作確認済み)。出力の同一性確認は、`main`の旧版を別worktreeに作り、同じ一時テストを両方へ足して出力を比べる方法で行った。
+- **別件(aruaru-IME v0.2.24〜0.2.25)**: Windowsインストーラーを管理者権限で無人試験し、インストール・エンジン起動(127.0.0.1:4660)・新経路 `POST /aruaru_ime.v1.Ime/Convert` 200・アンインストール(残り0・CLSID削除)を確認(v0.2.24時点、旧経路は当時は互換で200)。TSF DLLは新経路だけを呼ぶことをコードで確認。**未了**: 実アプリ(メモ帳等)での入力通し確認、候補窓・右クリックの目視、`components`(Qwen等)の導入、Android実機へのv0.2.24導入(Play Protect画面で停止、`rest-android`が担当)。試験用ファイルは `F:\_gen\ime-test`(`run.ps1`・`result.txt`)。
+
+### 再開用メッセージ(そのまま貼り付け)
+```
+再開するリポジトリ: F:\_atr(audiocafe-tokyo-rust、GitHub: aon-co-jp/audiocafe-tokyo-rust)と F:\aruaru-IME(別件。手元は ahead 1 / behind 3 で未コミットのCargo.lockあり。git pullせず fetch して整理)。
+1) audiocafe-tokyo-rust: PORTING.md 末尾の「2026-11-15 到達点」を読む。sonic切替は完了・本番反映済み。残りは cron.rs / scraper.rs の parse_secure 化(実測で効く所から)と表示速度の実測。
+2) aruaru-IME: v0.2.25で旧REST経路は削除済み。Windows実アプリでの入力通し確認(管理者権限のPowerShellで install-uninstall-test.ps1 相当を再実行)、Android実機の確認(端末のPlay Protect画面で「インストールする」を押す)。
+方針: REST全廃(Connect/gRPC)、JSONはRS-JSON。チャットは日本語のみ。VPSでビルドしない(WSLビルド→scp→バックアップ→入れ替え→確認→失敗時ロールバック)。
+```
+
+### English
+- **Status**: Cache JSON is now read with `rust_json::parse_secure_sonic` (16 MiB / depth 32 / duplicate keys rejected) into `sonic_rs::Value` (`a949306`). Output is byte-identical to the old implementation on synthetic data; `cargo test` passes (15); deployed to production (`/root/audiocafe-tokyo-rust`, WSL build then scp) with 7 pages (`/ /aruaru /aruaru-lady /rakuten-mobile /discover /summary /healthz`) byte-identical before/after. Rollback binary: `target/release/audiocafe-tokyo-server.before-sonic-20261109`.
+- **REST abolition**: zero own APIs (all routes are display pages; exceptions only).
+- **Open**: `cron.rs` / `scraper.rs` still use `parse_strict` + `serde_json` (small writes). Rendering speed was not measured. The old VPS worktree `/root/repository/atr-sonic` (branch `sonic-switch-20261016`) is obsolete but left in place.
+- **Pitfalls**: Git Bash rewrites `/mnt/...`, so call WSL from PowerShell. Never build on the VPS (the WSL build uses glibc symbols up to 2.38 and was verified on the 2.39 production host).
+- **Separate item (aruaru-IME v0.2.24-0.2.25)**: the Windows installer was tested unattended with administrator rights: install, engine start (127.0.0.1:4660), new route `POST /aruaru_ime.v1.Ime/Convert` 200, uninstall (0 files left, CLSID removed) - at v0.2.24, when the legacy routes were still served. The TSF DLL calls only the new routes (checked in code). **Open**: end-to-end typing in a real app (Notepad etc.), visual check of the candidate window / context menu, `components` (Qwen etc.) install, v0.2.24 on the Android device (stopped at the Play Protect dialog; owned by `rest-android`). Test files: `F:\_gen\ime-test` (`run.ps1`, `result.txt`).
+
+### Resume message (paste as is)
+```
+Repos to resume: F:\_atr (audiocafe-tokyo-rust, GitHub aon-co-jp/audiocafe-tokyo-rust) and F:\aruaru-IME (separate item; local clone is ahead 1 / behind 3 with an uncommitted Cargo.lock - fetch and reconcile, do not git pull).
+1) audiocafe-tokyo-rust: read "2026-11-15 到達点" at the end of PORTING.md. The sonic switch is done and deployed. Remaining: move cron.rs / scraper.rs to parse_secure (where measurements show a gain) and measure rendering speed.
+2) aruaru-IME: v0.2.25 removed the legacy REST routes. Remaining: end-to-end typing in a real Windows app (rerun an install/uninstall test from an elevated PowerShell) and the Android device check (tap "Install" on the Play Protect dialog on the phone).
+Policy: REST abolished (Connect/gRPC), JSON via RS-JSON. Chat in Japanese only. Never build on the VPS (WSL build -> scp -> backup -> swap -> verify -> roll back on failure).
+```
