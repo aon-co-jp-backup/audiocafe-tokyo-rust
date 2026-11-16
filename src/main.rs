@@ -3829,6 +3829,32 @@ Wi-Fi → 詳細設定の中にある場合も → 「プライベートDNS」�
     page_shell("困った時は", body)
 }
 
+/// スマホ紹介コーナー(正本はaruaru.tokyo)。起動時は同梱の写し(`assets/smartphone-corner.html`)を使い、
+/// 5分ごとにaruaru.tokyoから取り直して差し替える(取得失敗時は直前の内容のまま)。
+/// aruaru.tokyoを編集すると自動でaudiocafe.tokyoに連動して反映される(2026-11-16、ユーザー指示)。
+static SMARTPHONE_CORNER: Lazy<std::sync::RwLock<String>> =
+    Lazy::new(|| std::sync::RwLock::new(include_str!("../assets/smartphone-corner.html").to_string()));
+const SMARTPHONE_CORNER_URL: &str = "https://aruaru.tokyo/smartphone-corner.html";
+
+async fn refresh_smartphone_corner() -> Result<(), String> {
+    let client = reqwest::Client::builder().timeout(std::time::Duration::from_secs(20)).build().map_err(|e| e.to_string())?;
+    let resp = client.get(SMARTPHONE_CORNER_URL).send().await.map_err(|e| e.to_string())?;
+    if !resp.status().is_success() {
+        return Err(format!("HTTP {}", resp.status()));
+    }
+    let text = resp.text().await.map_err(|e| e.to_string())?;
+    // 想定外の内容(エラーページ等)や極端な大きさは採用しない。
+    if text.len() > 4 * 1024 * 1024 || !text.contains("pixel-intro") {
+        return Err("unexpected content".to_string());
+    }
+    *SMARTPHONE_CORNER.write().map_err(|e| e.to_string())? = text;
+    Ok(())
+}
+
+fn smartphone_corner_html() -> String {
+    SMARTPHONE_CORNER.read().map(|g| g.clone()).unwrap_or_default()
+}
+
 #[tokio::main]
 async fn main() -> Result<(), std::io::Error> {
     tracing_subscriber::fmt::init();
@@ -3842,6 +3868,14 @@ async fn main() -> Result<(), std::io::Error> {
         return Ok(());
     }
 
+    tokio::spawn(async {
+        loop {
+            if let Err(e) = refresh_smartphone_corner().await {
+                tracing::warn!("スマホコーナーの取り込みに失敗(直前の内容を使用): {e}");
+            }
+            tokio::time::sleep(std::time::Duration::from_secs(300)).await;
+        }
+    });
     let router = hyper_compat::Router::new()
         .route(
             Method::GET,
@@ -3851,7 +3885,7 @@ async fn main() -> Result<(), std::io::Error> {
                     let query = hyper_compat::query_params(&req);
                     hyper_compat::html_response(StatusCode::OK, page_shell("AUDIOCAFE | World — Select Your Language", &render_top_body(&query)).replacen("<body>
 ", &format!("<body>
-{}{}{}{}", TOP_AMP_HTML, LAWN_TOP_HTML, HDD_LINKS_HTML, AEON_TRAINING_HTML), 1))
+{}{}{}{}{}", smartphone_corner_html(), TOP_AMP_HTML, LAWN_TOP_HTML, HDD_LINKS_HTML, AEON_TRAINING_HTML), 1))
                 })
             }),
         )
