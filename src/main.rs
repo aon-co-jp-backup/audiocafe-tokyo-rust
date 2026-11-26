@@ -22,6 +22,7 @@
 //! それ以外のオブジェクト配列・ネストしたオブジェクトは再帰)。
 
 mod cron;
+mod i18n_pages;
 mod scraper;
 mod seed_urls;
 
@@ -1789,6 +1790,16 @@ async fn render_composite_body(page: &CompositePage) -> String {
         }
     }
     out
+}
+
+fn i18n_page(params: Params) -> hyper_compat::Response {
+    let dir = params.get("dir").unwrap_or("");
+    let file = params.get("file").unwrap_or("");
+    use chrono::Datelike;
+    match i18n_pages::render(dir, file, chrono::Local::now().year()) {
+        Some(html) => hyper_compat::html_response(StatusCode::OK, html),
+        None => hyper_compat::html_response(StatusCode::NOT_FOUND, "Not Found".to_string()),
+    }
 }
 
 fn healthz_response() -> hyper_compat::Response {
@@ -3917,6 +3928,8 @@ async fn main() -> Result<(), std::io::Error> {
         // 追加した(2026-07-19)。内容は`/page/aruaru`等と同一。
         .route(Method::GET, "/aruaru", Arc::new(|_req, _params| Box::pin(async move { composite_page_by_slug("aruaru").await })))
         .route(Method::GET, "/aruaru-lady", Arc::new(|_req, _params| Box::pin(async move { composite_page_by_slug("aruaru-lady").await })))
+        // 旧PHP版の多言語ページ(`/<dir>/index-<言語>.php`)の Rust 移植(2026-11-26)。
+        .route(Method::GET, "/:dir/:file", Arc::new(|_req, params: Params| Box::pin(async move { i18n_page(params) })))
         .route(Method::GET, "/rakuten-mobile", Arc::new(|_req, _params| Box::pin(async move { composite_page_by_slug("rakuten-mobile").await })))
         // PHP版の「言語カード＆/top 要約LIST」(`mixlist=1`、`index.php`
         // 1590行目)相当。全カードの主要リンク(YouTube/Blog等)をタイトル付きで

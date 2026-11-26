@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>aruaru | Вакансии для IT-инженеров и карьера в строительных профессиях</title>
+<meta name="description" content="Подбор IT/программистских вакансий, популярные языки, фреймворки и БД, приложения для изучения английского, а также пути входа в плотницкое дело, управление зданиями и стройку без опыта.">
+<style>
+  :root { color-scheme: light dark; --bg:#0a0e1a; --card:#111a2e; --fg:#e6edf7; --muted:#93a3bd; --accent:#7dd3fc; --accent2:#34d399; --border:#1e3555; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--fg); line-height:1.7; }
+  main { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.8rem; margin: 0 0 .5rem; }
+  h2 { font-size: 1.2rem; color: var(--accent); margin: 2.5rem 0 .6rem; }
+  h3 { font-size: 1.05rem; color: var(--accent2); margin: 1.5rem 0 .5rem; }
+  .muted { color: var(--muted); font-size: .92rem; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: .75rem; padding: 1.1rem 1.3rem; margin-bottom: 1.25rem; }
+  a { color: var(--accent); }
+  ul { padding-left: 1.2rem; }
+  li { margin-bottom: .4rem; }
+  .lang-switch { text-align:center; margin-bottom:2rem; }
+  .lang-switch a { display:inline-block; padding:.5rem 1.2rem; border-radius:999px; background:#1e3555; text-decoration:none; font-weight:600; margin:.2rem; }
+  footer { text-align:center; color: var(--muted); font-size:.85rem; margin-top:3rem; }
+</style>
+</head>
+<body>
+<main>
+  {{LANG_NAV:ru}}
+  <h1>Найдите IT-вакансию под свои навыки.</h1>
+  <p class="muted">Фильтр по языку, фреймворку, ставке и региону. На странице также собраны японские доски вакансий и биржи фриланс-проектов, а также раздел о входе в профессии плотника, управления зданиями и стройплощадками без опыта.</p>
+
+  <div class="card">
+    <h2 style="margin-top:0">💼 Подборка вакансий (агрегация с японских досок объявлений)</h2>
+    <p>Большинство ссылок ведут на японоязычные доски вакансий (например, doda). Около 80% проектов допускают удалённую работу, типичная ставка для контрактных инженеров — 600 000–1 300 000 иен в месяц.</p>
+  </div>
+
+  <h2>💻 Популярные языки, фреймворки и базы данных</h2>
+  <ul>
+    <li><strong>Языки:</strong> Python, TypeScript/JavaScript, Go, Rust, Java, Kotlin, Swift, C#, PHP, Ruby</li>
+    <li><strong>Фреймворки:</strong> React, Next.js, Vue, Django, FastAPI, Spring Boot, Ruby on Rails, Laravel, .NET, Flutter</li>
+    <li><strong>Базы данных:</strong> PostgreSQL, MySQL, Redis, MongoDB, SQLite, Elasticsearch, DynamoDB, ClickHouse</li>
+  </ul>
+  <p><a href="/aruaru/#aruaru-top80-tech">→ Полный рейтинг TOP80 (японская версия)</a></p>
+
+  <h2>📚 Рекомендованные курсы</h2>
+  <p><a href="/aruaru/#aruaru-learn-modal">→ Рейтинг образовательных сервисов (японская версия)</a></p>
+
+  <h2>🌏 Приложения для изучения английского (TOP50)</h2>
+  <p><a href="/aruaru/#aruaru-eikaiwa-top50">→ Рейтинг TOP50 (японская версия)</a></p>
+
+  <div class="card">
+    <h3>🎓 Бесплатное IT-обучение и агентства по смене профессии</h3>
+    <p>Подборка программ, позволяющих бесплатно обучиться и устроиться в IT без опыта программирования, а также бесплатных кадровых агентств. Условия зависят от провайдера — уточняйте актуальные требования на сайте каждой службы.</p>
+  </div>
+
+  <div class="card">
+    <h3>🏗️ Вход в плотницкое дело и деревянное строительство без опыта</h3>
+    <p>Подборка вакансий для начинающих плотников и опалубщиков, не требующих опыта.</p>
+  </div>
+
+  <div class="card">
+    <h3>📐 Управление зданиями и стройплощадками → путь к лицензии архитектора</h3>
+    <p>Примеры вакансий начального уровня (плотник, CAD-оператор, управление зданиями и стройплощадками) без опыта и квалификации, которые могут привести к получению лицензий архитектора 1-го класса, деревянного зодчества, управляющего архитектора или инженера строительного надзора 1-го класса. Условия поддержки сертификации отличаются у разных работодателей — уточняйте детали в вакансии или в местном центре занятости.</p>
+  </div>
+
+  <h2>💡 Предложения автора сайта</h2>
+  <ul>
+    <li>🚗 Ввести бесплатные шаттлы для клиентов.</li>
+    <li>☀️ Больше заведений, работающих с утра.</li>
+    <li>🍺 Расширить продажу безалкогольного и не содержащего добавок пива.</li>
+    <li>💊 Приоритетное размещение препаратов и добавок для здоровья сердца.</li>
+  </ul>
+
+  <footer>
+    &copy; {{YEAR}} audiocafe.tokyo/aruaru — русская версия (перевод выполнен вручную, не машинный перевод).
+    Информация о вакансиях и зарплатах — агрегация поисковых ссылок; уточняйте актуальные условия в официальных вакансиях.
+  </footer>
+</main>
+</body>
+</html>
