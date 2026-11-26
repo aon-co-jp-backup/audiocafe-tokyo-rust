@@ -1,3 +1,3 @@
 source: aon-co-jp/audiocafe-tokyo-rust
-commit: 26f8fb3d1aac8357a166dfbed272688c2bf9c377
-updated: 2026-11-26T12:03:16Z
+commit: 0c325d4c2be702e1b4db5200832fc495547b4471
+updated: 2026-11-26T12:04:10Z
