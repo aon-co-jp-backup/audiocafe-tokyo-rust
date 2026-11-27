@@ -25,6 +25,7 @@ mod cron;
 mod i18n_pages;
 mod static_files;
 mod lady_cron;
+mod tech_cron;
 mod scraper;
 mod seed_urls;
 
@@ -3915,6 +3916,12 @@ async fn main() -> Result<(), std::io::Error> {
         if let Some(i) = args.iter().position(|a| a == "--cron-lady") {
             let dir = args.get(i + 1).cloned().unwrap_or_else(|| "/var/www/audiocafe.tokyo/aruaru-lady".into());
             lady_cron::run(std::path::Path::new(&dir))?;
+            return Ok(());
+        }
+        // 旧 aruaru/cron.php(--cron-tech)の移植(2026-11-27)。
+        if let Some(i) = args.iter().position(|a| a == "--cron-tech") {
+            let dir = args.get(i + 1).cloned().unwrap_or_else(|| "/var/www/audiocafe.tokyo/aruaru".into());
+            tech_cron::run(std::path::Path::new(&dir)).await?;
             return Ok(());
         }
     }
