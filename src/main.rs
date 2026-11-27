@@ -207,6 +207,12 @@ const TOP_VIDEO_HTML: &str = r#"<p style="max-width:960px;margin:1rem auto .8rem
 <a href="https://audiocafe.tokyo/aruaru-lady/index-en.php">🌐 audiocafe.tokyo/aruaru-lady (English, translated by Claude Code)</a></p>
 
 <section class="top-news" style="max-width:640px;margin:1rem auto;text-align:center;">
+<div style="max-width:640px;margin:0 auto 1.4rem;">
+<p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://www.youtube.com/watch?v=PoI8rVRX8vs" target="_blank" rel="noopener noreferrer">【ゆっくり解説】YF23は実現不可能？ 完成目前は本当か？？過去に日本のF 2後継機と言われた「幻のYF 23」がF 22を上回る性能らしい ！？将来的にはYF23が日本に導入される可能性もある</a></p>
+<div style="position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden;">
+<button type="button" aria-label="動画を再生 / Play video" style="all:unset;position:absolute;inset:0;cursor:pointer;" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/PoI8rVRX8vs?autoplay=1&amp;playsinline=1&amp;rel=0';f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;f.title='YF-23 ゆっくり解説';f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';this.replaceWith(f)"><img src="https://i.ytimg.com/vi/PoI8rVRX8vs/maxresdefault.jpg" onerror="this.onerror=null;this.src=this.src.replace(/maxres/,'hq')" alt="【ゆっくり解説】YF23は実現不可能？ 完成目前は本当か？？過去に日本のF 2後継機と言われた「幻のYF 23」がF 22を上回る性能らしい ！？将来的にはYF23が日本に導入される可能性もある" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:30px;line-height:64px;text-align:center;">▶</span></button>
+</div>
+</div>
 <div style="max-width:360px;margin:0 auto 1.4rem;">
 <p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://www.youtube.com/shorts/FiW4F_XqHdc" target="_blank" rel="noopener noreferrer">ポーランド美女が一番嬉しかった瞬間？</a></p>
 <div style="position:relative;width:100%;aspect-ratio:9/16;background:#000;border-radius:8px;overflow:hidden;">
