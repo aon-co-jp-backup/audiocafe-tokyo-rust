@@ -208,7 +208,7 @@ const TOP_VIDEO_HTML: &str = r#"<p style="max-width:960px;margin:1rem auto .8rem
 
 <section class="top-news" style="max-width:640px;margin:1rem auto;text-align:center;">
 <div style="max-width:360px;margin:0 auto 1.4rem;">
-<p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://www.youtube.com/shorts/85gblL0cU9o" target="_blank" rel="noopener noreferrer">オーディオファイル向けハイエンドラウンジバー</a></p>
+<p style="font-size:1.2rem;font-weight:700;margin:0 0 .6rem;"><a href="https://www.youtube.com/shorts/85gblL0cU9o" target="_blank" rel="noopener noreferrer">HIEND AUDIO_CAFE<br>オーディオファイル向けハイエンドラウンジバー</a></p>
 <div style="position:relative;width:100%;aspect-ratio:9/16;background:#000;border-radius:8px;overflow:hidden;">
 <button type="button" aria-label="動画を再生 / Play video" style="all:unset;position:absolute;inset:0;cursor:pointer;" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/85gblL0cU9o?autoplay=1&amp;playsinline=1&amp;rel=0';f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;f.title='オーディオファイル向けハイエンドラウンジバー';f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';this.replaceWith(f)"><img src="https://i.ytimg.com/vi/85gblL0cU9o/oar2.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/85gblL0cU9o/hqdefault.jpg'" alt="オーディオファイル向けハイエンドラウンジバー" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:30px;line-height:64px;text-align:center;">▶</span></button>
 </div>
