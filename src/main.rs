@@ -1542,6 +1542,20 @@ async fn render_aruaru_body() -> String {
   <a href="/aruaru-lady">audiocafe.tokyo/aruaru-lady</a>
 </div>
 
+<div class="card" id="maid-cafe-vsc">
+  <h2>🧩 maid-cafe-vsc(VS Code拡張) / VS Code extension</h2>
+  <p><b>日本語:</b> コードに色を付けて印を付け、AIに質問できるVS Code拡張です。AIは無料の aruaru-llm のほか、ChatGPT・Gemini・DeepSeek・Grok・Claude を、ご自身のキーで使えます。 <a href="https://github.com/aon-co-jp/maid-cafe-vsc" target="_blank" rel="noopener noreferrer">GitHub</a><br>
+  ダウンロード(.vsix プレビュー版 0.1.0): <a href="https://maid-cafe.tokyo/download/vsc/maid-cafe-vsc-0.1.0.vsix">maid-cafe-vsc-0.1.0.vsix</a><br>
+  インストール: VS Codeの拡張機能 →「…」→「VSIXからのインストール…」で選ぶ。<br>
+  使い方: コードを選んで右クリック →「Maid Cafe: Mark selection with a colour」で色付け、「Ask AI about a colour's ranges」で質問。
+  <a href="https://maid-cafe.tokyo/download/vsc/">詳しい紹介</a> ・ <a href="https://easy-web.tokyo/maid-cafe-vsc/">easy-web.tokyo</a></p>
+  <p><b>English:</b> A VS Code extension to mark code with colours and ask AI. It works with the free aruaru-llm, or with ChatGPT, Gemini, DeepSeek, Grok and Claude using your own key. <a href="https://github.com/aon-co-jp/maid-cafe-vsc" target="_blank" rel="noopener noreferrer">GitHub</a><br>
+  Download (.vsix preview 0.1.0): <a href="https://maid-cafe.tokyo/download/vsc/maid-cafe-vsc-0.1.0.vsix">maid-cafe-vsc-0.1.0.vsix</a><br>
+  Install: VS Code Extensions, the "..." menu, "Install from VSIX...".<br>
+  Usage: select code, right-click "Maid Cafe: Mark selection with a colour", then "Ask AI about a colour's ranges".
+  <a href="https://maid-cafe.tokyo/download/vsc/">Details</a> · <a href="https://easy-web.tokyo/maid-cafe-vsc/">easy-web.tokyo</a></p>
+</div>
+
 </div>
 
 <footer>
