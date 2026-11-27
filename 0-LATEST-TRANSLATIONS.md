@@ -50,8 +50,8 @@ Japanese and English are always the newest. Other languages are not translated e
 
 ## PORTING.md
 
-- 日本語 / ja: 2026-11-27 (latest)
-- English / en: 2026-11-15 (older than 2026-11-27)
+- 日本語 / ja: 2026-11-28 (latest)
+- English / en: 2026-11-15 (older than 2026-11-28)
 - 简体中文 / zh-Hans: not yet / まだ
 - 繁體中文 / zh-Hant: not yet / まだ
 - 한국어 / ko: not yet / まだ
