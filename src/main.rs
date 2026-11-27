@@ -24,6 +24,7 @@
 mod cron;
 mod i18n_pages;
 mod static_files;
+mod lady_cron;
 mod scraper;
 mod seed_urls;
 
@@ -3908,6 +3909,15 @@ async fn main() -> Result<(), std::io::Error> {
     // CLI引数で起動された場合はcron処理のみ実行してサーバーは立ち上げず終了する
     // (PHP側は`aruaru_is_cron_request()`でCGI/CLI両対応していたが、Rustバイナリは
     // 常にCLI起動のみを想定すればよいため`std::env::args()`の単純チェックで足りる)。
+    // 旧 aruaru-lady/cron.php の移植(2026-11-27)。`--cron-lady [出力先]`。
+    {
+        let args: Vec<String> = std::env::args().collect();
+        if let Some(i) = args.iter().position(|a| a == "--cron-lady") {
+            let dir = args.get(i + 1).cloned().unwrap_or_else(|| "/var/www/audiocafe.tokyo/aruaru-lady".into());
+            lady_cron::run(std::path::Path::new(&dir))?;
+            return Ok(());
+        }
+    }
     if std::env::args().any(|a| a == "--cron-all") {
         cron::run_cron_all().await;
         return Ok(());
