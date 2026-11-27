@@ -23,6 +23,7 @@
 
 mod cron;
 mod i18n_pages;
+mod static_files;
 mod scraper;
 mod seed_urls;
 
@@ -1790,6 +1791,22 @@ async fn render_composite_body(page: &CompositePage) -> String {
         }
     }
     out
+}
+
+async fn static_or_404(req: hyper_compat::Request) -> hyper_compat::Response {
+    let range = req.headers().get("range").and_then(|v| v.to_str().ok()).map(str::to_string);
+    match static_files::serve(req.uri().path(), range.as_deref()).await {
+        Some(r) => r,
+        None => hyper_compat::html_response(StatusCode::NOT_FOUND, "Not Found".to_string()),
+    }
+}
+
+async fn i18n_or_static(req: hyper_compat::Request, params: Params) -> hyper_compat::Response {
+    let r = i18n_page(params);
+    if r.status() == StatusCode::NOT_FOUND {
+        return static_or_404(req).await;
+    }
+    r
 }
 
 fn i18n_page(params: Params) -> hyper_compat::Response {
@@ -3929,12 +3946,16 @@ async fn main() -> Result<(), std::io::Error> {
         .route(Method::GET, "/aruaru", Arc::new(|_req, _params| Box::pin(async move { composite_page_by_slug("aruaru").await })))
         .route(Method::GET, "/aruaru-lady", Arc::new(|_req, _params| Box::pin(async move { composite_page_by_slug("aruaru-lady").await })))
         // 旧PHP版の多言語ページ(`/<dir>/index-<言語>.php`)の Rust 移植(2026-11-26)。
-        .route(Method::GET, "/:dir/:file", Arc::new(|_req, params: Params| Box::pin(async move { i18n_page(params) })))
+        .route(Method::GET, "/:dir/:file", Arc::new(|req, params: Params| Box::pin(async move { i18n_or_static(req, params).await })))
         .route(Method::GET, "/rakuten-mobile", Arc::new(|_req, _params| Box::pin(async move { composite_page_by_slug("rakuten-mobile").await })))
         // PHP版の「言語カード＆/top 要約LIST」(`mixlist=1`、`index.php`
         // 1590行目)相当。全カードの主要リンク(YouTube/Blog等)をタイトル付きで
         // 整列表示する専用画面(2026-07-19、ユーザー要望により新設)。
-        .route(Method::GET, "/summary", Arc::new(|_req, _params| Box::pin(async move { hyper_compat::html_response(StatusCode::OK, page_shell("AUDIOCAFE | 言語カード要約 — Link Summary", &render_summary_body())) })));
+        .route(Method::GET, "/summary", Arc::new(|_req, _params| Box::pin(async move { hyper_compat::html_response(StatusCode::OK, page_shell("AUDIOCAFE | 言語カード要約 — Link Summary", &render_summary_body())) })))
+        // 旧PHP版が配っていた静的ファイル(2026-11-27)。1・3・4段のパス。2段は上の i18n_or_static。
+        .route(Method::GET, "/:a", Arc::new(|req, _p: Params| Box::pin(async move { static_or_404(req).await })))
+        .route(Method::GET, "/:a/:b/:c", Arc::new(|req, _p: Params| Box::pin(async move { static_or_404(req).await })))
+        .route(Method::GET, "/:a/:b/:c/:d", Arc::new(|req, _p: Params| Box::pin(async move { static_or_404(req).await })));
 
     tracing::info!("audiocafe-tokyo-server listening on 127.0.0.1:4400");
     let (_, handle) = hyper_compat::serve(router, "127.0.0.1:4400".parse().unwrap()).await?;
