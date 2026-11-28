@@ -351,3 +351,7 @@ Policy: REST abolished (Connect/gRPC), JSON via RS-JSON. Chat in Japanese only. 
 ## 2026-11-28 url 2.5.9 (RUSTSEC-2026-0592)
 **日本語**: Cargo.lock の url を 2.5.8→2.5.9 に更新(API変更なし)。テスト成功。VPSは再ビルド未実施。
 **English**: Bumped url 2.5.8 to 2.5.9 in Cargo.lock (no API change). Tests pass. VPS not rebuilt yet.
+
+## 2026-11-28 REST風ルート4本の撤去
+**日本語**: `/:dir/:file`・`/:a`・`/:a/:b/:c`・`/:a/:b/:c/:d` を消し、RPoem の `Router::fallback` で同じ内容を配る(2段=多言語ページ→静的、1・3・4段=静的、5段以上=404)。手元で実測: 多言語ページ200・無い言語404・静的200・5段404・/help 200・POSTは404。本番VPSは未反映。
+**English**: Removed the four REST-style path-parameter routes and serve the same content through RPoem `Router::fallback` (2 segments: i18n page then static; 1/3/4: static; 5+: 404). Measured locally: i18n 200, unknown language 404, static 200, 5 segments 404, /help 200, POST 404. Not yet deployed to the VPS.
