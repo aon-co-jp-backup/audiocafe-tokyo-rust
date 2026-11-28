@@ -1,0 +1,40 @@
+<div id="site-search" style="position:sticky;top:0;z-index:9999;background:#fff;border-bottom:1px solid #ddd;padding:.5rem .8rem;display:flex;gap:.4rem;align-items:center;justify-content:center;flex-wrap:wrap;box-shadow:0 1px 4px rgba(0,0,0,.08);">
+<input id="ss-q" type="search" placeholder="このページ内を検索 / Search this page" autocomplete="off" style="flex:1;max-width:36rem;min-width:12rem;padding:.55rem 1.1rem;font-size:1rem;border:1px solid #dfe1e5;border-radius:24px;outline:none;color:#222;background:#fff;">
+<button id="ss-prev" type="button" style="padding:.45rem .8rem;border-radius:18px;border:1px solid #dadce0;background:#f8f9fa;color:#222;cursor:pointer;">前へ</button>
+<button id="ss-next" type="button" style="padding:.45rem .8rem;border-radius:18px;border:1px solid #dadce0;background:#f8f9fa;color:#222;cursor:pointer;">次へ</button>
+<span id="ss-count" style="font-size:.9rem;color:#555;min-width:4rem;"></span>
+</div>
+<style>mark.ss-hit{background:#fde68a;color:#000;padding:0}mark.ss-hit.ss-cur{background:#f97316;color:#fff}</style>
+<script>
+(function(){
+var q=document.getElementById('ss-q'),cnt=document.getElementById('ss-count'),box=document.getElementById('site-search');
+var hits=[],cur=-1,timer=null;
+function clear(){hits.forEach(function(m){var p=m.parentNode;if(!p)return;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});hits=[];cur=-1;}
+function search(){
+  clear();q.dataset.last=q.value;var t=q.value.trim();if(!t){cnt.textContent='';return;}
+  var low=t.toLowerCase(),nodes=[];
+  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+    var e=n.parentNode;if(!e||box.contains(e))return NodeFilter.FILTER_REJECT;
+    var tag=e.nodeName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='NOSCRIPT'||tag==='TEXTAREA')return NodeFilter.FILTER_REJECT;
+    return n.nodeValue.toLowerCase().indexOf(low)>=0?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;}});
+  while(w.nextNode())nodes.push(w.currentNode);
+  nodes.forEach(function(n){
+    var s=n.nodeValue,l=s.toLowerCase(),i=0,j,f=document.createDocumentFragment();
+    while((j=l.indexOf(low,i))>=0){if(j>i)f.appendChild(document.createTextNode(s.slice(i,j)));var m=document.createElement('mark');m.className='ss-hit';m.textContent=s.slice(j,j+t.length);f.appendChild(m);hits.push(m);i=j+t.length;}
+    if(i<s.length)f.appendChild(document.createTextNode(s.slice(i)));
+    n.parentNode.replaceChild(f,n);});
+  if(hits.length){go(0);}else{cnt.textContent='0件';}
+}
+function go(i){
+  if(!hits.length)return;if(cur>=0&&hits[cur])hits[cur].classList.remove('ss-cur');
+  cur=(i+hits.length)%hits.length;var m=hits[cur];m.classList.add('ss-cur');
+  var d=m.closest('details');if(d)d.open=true;
+  m.scrollIntoView({behavior:'smooth',block:'center'});
+  cnt.textContent=(cur+1)+' / '+hits.length;
+}
+q.addEventListener('input',function(){clearTimeout(timer);timer=setTimeout(search,250);});
+q.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();clearTimeout(timer);if(q.dataset.last!==q.value){search();}else{go(cur+(e.shiftKey?-1:1));}}});
+document.getElementById('ss-next').onclick=function(){if(!hits.length)search();else go(cur+1);};
+document.getElementById('ss-prev').onclick=function(){if(!hits.length)search();else go(cur-1);};
+})();
+</script>

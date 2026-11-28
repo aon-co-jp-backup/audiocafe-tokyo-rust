@@ -3973,7 +3973,7 @@ async fn main() -> Result<(), std::io::Error> {
                     let query = hyper_compat::query_params(&req);
                     hyper_compat::html_response(StatusCode::OK, page_shell("AUDIOCAFE | World — Select Your Language", &render_top_body(&query)).replacen("<body>
 ", &format!("<body>
-{}{}{}{}{}{}", EASYWEB_LINE_HTML, smartphone_corner_html(), TOP_AMP_HTML, LAWN_TOP_HTML, HDD_LINKS_HTML, AEON_TRAINING_HTML), 1))
+{}{}{}{}{}{}{}", include_str!("site_search.html"), EASYWEB_LINE_HTML, smartphone_corner_html(), TOP_AMP_HTML, LAWN_TOP_HTML, HDD_LINKS_HTML, AEON_TRAINING_HTML), 1))
                 })
             }),
         )
